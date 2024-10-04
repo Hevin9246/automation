@@ -65,18 +65,23 @@ def write_to_excel(df, file_path):
 
 def get_chrome_options():
     options = uc.ChromeOptions()
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--headless")  # Run in headless mode
-    options.add_argument("--no-sandbox")  # Bypass OS security model
-    options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1920x1080")  # Set window size (some websites require this)
-    options.add_argument("--log-level=1")
+    # options.add_argument("--disable-blink-features=AutomationControlled")
+    # options.add_argument("--headless")  # Run in headless mode
+    # options.add_argument("--no-sandbox")  # Bypass OS security model
+    # options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+    # options.add_argument("--disable-gpu")
+    # options.add_argument("--window-size=1920x1080")  # Set window size (some websites require this)
+    # options.add_argument("--log-level=1")
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument("--window-size=1920,1080")
 
     # Set the binary location for Chromium (important for Render)
-    options.binary_location = "/usr/bin/chromium-browser"
+    # options.binary_location = "/usr/bin/chromium-browser"
 
-    logging.info(f"Chromium binary location set to: {options.binary_location}")
+    # logging.info(f"Chromium binary location set to: {options.binary_location}")
 
     
     return options
@@ -84,8 +89,9 @@ def get_chrome_options():
 def perform_login_and_action(pan, password, df, index):
     logging.info("1")
     options = get_chrome_options()
+    driver = webdriver.Chrome(options=options)
     logging.info("2")
-    driver = uc.Chrome(options=options)
+    # driver = uc.Chrome(options=options)
     logging.info("3")
 
     try:
