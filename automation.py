@@ -65,7 +65,7 @@ def write_to_excel(df, file_path):
 
 def get_chrome_options():
     options = uc.ChromeOptions()
-    # options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--disable-blink-features=AutomationControlled")
     # options.add_argument("--headless")  # Run in headless mode
     # options.add_argument("--no-sandbox")  # Bypass OS security model
     # options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
