@@ -33,12 +33,23 @@ RUN adduser \
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
 # into this layer.
+
+RUN df -h
+RUN du -sh /app || true
+
 RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
+
+RUN df -h
+RUN du -sh /app || true
+
 # Switch back to root to create and set permissions for the 'uploads' directory
 USER root
 RUN mkdir -p /app/uploads && chown -R appuser:appuser /app/uploads
+
+RUN df -h
+RUN du -sh /app/uploads || true
 
 # Switch to the non-privileged user to run the application.
 USER appuser

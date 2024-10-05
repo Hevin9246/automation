@@ -66,23 +66,11 @@ def write_to_excel(df, file_path):
 def get_chrome_options():
     options = uc.ChromeOptions()
     options.add_argument("--disable-blink-features=AutomationControlled")
-    # options.add_argument("--headless")  # Run in headless mode
-    # options.add_argument("--no-sandbox")  # Bypass OS security model
-    # options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-    # options.add_argument("--disable-gpu")
-    # options.add_argument("--window-size=1920x1080")  # Set window size (some websites require this)
-    # options.add_argument("--log-level=1")
     options.add_argument('--no-sandbox')
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--window-size=1920,1080")
-
-    # Set the binary location for Chromium (important for Render)
-    # options.binary_location = "/usr/bin/chromium-browser"
-
-    # logging.info(f"Chromium binary location set to: {options.binary_location}")
-
     
     return options
 
