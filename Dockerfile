@@ -61,4 +61,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application.
-CMD gunicorn 'app:app' --bind=0.0.0.0:8000
+CMD gunicorn 'app:app' --bind=0.0.0.0:8000 --timeout 120  # Set timeout to 120 seconds

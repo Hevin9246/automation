@@ -52,6 +52,13 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def home():
     return render_template('home.html')
 
+@app.route("/memory-usage")
+def memory_usage():
+    process = psutil.Process(os.getpid())
+    memory_info = process.memory_info()
+    memory_used_mb = memory_info.rss / (1024 ** 2)  # Convert bytes to MB
+    return f"Memory Usage: {memory_used_mb:.2f} MB out of 512 MB"
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
